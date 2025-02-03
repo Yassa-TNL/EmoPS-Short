@@ -265,7 +265,7 @@ class EmoDT(object):
         #pylink stuff
         el_tracker = pylink.getEYELINK()
         el_tracker.setOfflineMode()
-        el_tracker.sendCommand("Show Image")
+        el_tracker.sendCommand(f"image_onset, {self.phase}")
         el_tracker.imageBackdrop(imgPath,
                                  0, 0, int(theImage.size[0]), int(theImage.size[1]),
                                  0, 0, pylink.BX_MAXCONTRAST)
@@ -280,18 +280,21 @@ class EmoDT(object):
         pylink.pumpDelay(100)
         
         self.window.flip()
+        el_tracker.sendCommand(f"blank_screen_fixiation, {self.phase}")
         wait(2) # show blank screen for 2 seconds
         theImage.draw(self.window)        
+        el_tracker.sendCommand(f"stimuli, {self.phase}")
         self.window.flip()
         wait(2) # show image for 2 seconds
         self.fixCrs.draw(self.window)
+        el_tracker.sendCommand(f"after_stimuli_fixiation, {self.phase}")
         self.window.flip()
         wait(2) # show fixiation cursor for 2 seconds
         
         pylink.pumpDelay(100)
         el_tracker.stopRecording()
 
-        el_tracker.sendCommand("Show Choices")
+        el_tracker.sendCommand("show_choices")
         try:
             el_tracker.startRecording(1, 1, 1, 1)
         except RuntimeError as error:
@@ -304,6 +307,8 @@ class EmoDT(object):
         self.clock.reset()
         clearEvents()
         keyPresses = []
+        el_tracker.sendCommand(f"response_decision, {self.phase}")
+
 
         while self.clock.getTime() < trialDur:
             for i in range(len(circs)):
@@ -327,6 +332,9 @@ class EmoDT(object):
         
         pylink.pumpDelay(100)
         el_tracker.stopRecording()
+        
+        el_tracker.sendCommand(f"fixiation_after_response, {self.phase}")
+
         
         self.fixCrs.draw(self.window)
         self.window.flip()

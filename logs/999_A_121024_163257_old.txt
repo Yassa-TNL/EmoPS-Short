@@ -1,4 +1,4 @@
-EmoDT Task: 12:02:10 on 02-03-25
+EmoDT Task: 16:32:57 on 12-10-24
 Subject ID: 999
 Using set A
 Trial Duration (Study): 2.00
@@ -10,16 +10,22 @@ ITI: 3.00
 Begin Study
 
 TrialNum,Image,TrialType,Keypress,RT
+1,10033a.jpg,LureA,2,0.60
+2,30051a.jpg,LureA,,0.00
+3,30003a.jpg,LureA,,0.00
+4,20027a.jpg,LureA,,0.00
+5,50033.jpg,R-Neu,,0.00
+6,30033a.jpg,LureA,,0.00
+7,20055a.jpg,LureA,,0.00
+8,50031.jpg,R-Neu,,0.00
 
 ### Study Terminated Early ###
 
 
-Begin Test
 
-TrialNum,Image,TrialType,Valence,Keypress,RT
-1,40031.jpg,R-Neg,4,,0.00
+#### Test Not Run ####
 
-### Test Terminated Early ###
+
 
 
 
